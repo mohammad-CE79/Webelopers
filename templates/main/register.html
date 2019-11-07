@@ -13,9 +13,9 @@
                 {% endif %}
                 {% for error in field.errors %}
                     {% if error == "A user with that username already exists." %}
-                        <div style="color: red" id="error">نام کاربری شما در سیستم موجود است</div>
+                        <div style="color: red" id="errors">نام کاربری شما در سیستم موجود است</div>
                     {% elif error == "The two password fields didn't match." %}
-                        <div style="color: red" id="error">گذرواژه و تکرار گذرواژه یکسان نیستند</div>
+                        <div style="color: red" id="errors">گذرواژه و تکرار گذرواژه یکسان نیستند</div>
                     {% endif %}
                 {% endfor %}
             </p>
