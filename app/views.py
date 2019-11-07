@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from app.forms import SignUp, SignIn, ContactUs
 
@@ -89,3 +90,13 @@ def sendmail(request):
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
         return HttpResponseRedirect('/contact/thanks/')
+
+
+def user_panel(request):
+    return render(request, 'main/userpanel.html')
+
+
+@login_required(login_url='/')
+def profile(request):
+    user = request.user
+    return render(request, 'main/profile.html', context={"user": user})
