@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <form id="setting_form" method="post" action="{% url 'setting' %}">
+        {% csrf_token %}
+        <input name="first_name">
+        <input name="last_name">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
