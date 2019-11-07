@@ -118,3 +118,7 @@ def setting(request):
 def profile(request):
     user = request.user
     return render(request, 'main/profile.html', context={"user": user})
+
+
+def make_course(request):
+    return render(request, 'main/makecourse.html')
