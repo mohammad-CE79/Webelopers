@@ -12,7 +12,11 @@
                     <small style="color: grey">{{ field.help_text }}</small>
                 {% endif %}
                 {% for error in field.errors %}
-                    <div style="color: red" id="error">{{ error }}</div>
+                    {% if error == "A user with that username already exists." %}
+                        <div style="color: red" id="error">نام کاربری شما در سیستم موجود است</div>
+                    {% elif error == "The two password fields didn't match." %}
+                        <div style="color: red" id="error">گذرواژه و تکرار گذرواژه یکسان نیستند</div>
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endfor %}
