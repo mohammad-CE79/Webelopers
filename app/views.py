@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.http import HttpResponse
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from app.forms import SignUp, SignIn, ContactUs
@@ -27,8 +28,8 @@ def sign_up(request):
             for msg in form.error_messages:
                 messages.error(request, f"{msg}: {form.error_messages[msg]}")
         return render(request=request,
-                           template_name='main/register.html',
-                           context={"form": form})
+                      template_name='main/register.html',
+                      context={"form": form})
 
     form = SignUp()
     return render(request=request,
@@ -62,13 +63,28 @@ def logout_request(request):
     messages.info(request, "Logged out successfully!")
     return redirect("/")
 
+
 def contact_us(request):
     if request.method == 'POST':
         form = ContactUs(request.POST)
         if form.is_valid():
+            sendmail(request)
             return redirect('/contact_us2')
 
     return render(request, 'main/contact_us.html')
 
+
 def contact_us2(request):
     return render(request, 'main/contact_us2.html')
+
+
+def sendmail(request):
+    subject = request.POST.get('title', '')
+    message = request.POST.get('text', '')
+    from_email = request.POST.get('email', '')
+    if subject and message and from_email:
+        try:
+            send_mail(subject, message, from_email, ['jamshidi.m799@gmail.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return HttpResponseRedirect('/contact/thanks/')
