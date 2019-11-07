@@ -2,12 +2,35 @@
 
 {% block content %}
     <form id="register_form">
-        <input name=”first_name”>
+        <div>
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name=”first_name”>
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name=”last_name”>
+        </div>
+        <div>
+            <label for="user_name">Username:</label>
+            <input type="text" id="user-name" name=”username”>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div>
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="password1">
+        </div>
+        <div>
+            <label for="pass2">:</label>
+            <input type="password" id="pass2" name="password2">
+        </div>
         <input name=”last_name”>
         <input name=”username”>
         <input name=”email”>
         <input name=”password1”>
         <input name=”password2”>
-        <button name=”submit></button>
+        <button name=”submit>submit</button>
     </form>
 {% endblock %}
