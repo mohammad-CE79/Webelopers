@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
@@ -19,3 +19,9 @@ class SignUp(UserCreationForm):
     #     self.fields['username'].required = False
     # def is_valid(self):
     #     return True;
+
+
+class SignIn(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
