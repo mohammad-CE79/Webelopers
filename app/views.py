@@ -82,6 +82,7 @@ def sendmail(request):
     subject = request.POST.get('title', '')
     message = request.POST.get('text', '')
     from_email = request.POST.get('email', '')
+    message.join('\n' + from_email)
     if subject and message and from_email:
         try:
             send_mail(subject, message, from_email, ['jamshidi.m799@gmail.com'])
