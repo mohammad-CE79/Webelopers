@@ -61,3 +61,6 @@ def logout_request(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect("/")
+
+def contact_us(request):
+    return render(request, 'main/contact_us.html')
