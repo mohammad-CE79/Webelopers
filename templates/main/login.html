@@ -1,21 +1,31 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <h2>Sign In</h2>
-    <form method="post" id="login_form" action="{% url 'login' %}">
-        {% csrf_token %}
-        {% for field in form %}
-            <p>
-                {{ field.label_tag }}<br>
-                {{ field }}
-                {% if field.help_text %}
-                    <small style="color: grey">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                    <div id="error" style="color: red">{{ error }}</div>
-                {% endfor %}
-            </p>
-        {% endfor %}
-        <button type="submit" name="submit">login</button>
-    </form>
+    <div class="shadow jumbotron p-4" style="position: center;  width: max-content; margin: auto; margin-top: 10%">
+        <h2 style="width: fit-content; margin: auto;">Sign In</h2>
+        <form method="post" id="login_form" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <br><label style="display: inline;">{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: grey">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div id="error" style="color: red">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <br>
+            <button class="btn btn-primary" style="margin-left: 8em; margin-right: 8em;" type="submit" name="submit">login</button>
+        </form>
+    </div>
+    <script>
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control");
+            inputs[i].classList.add("mx-10");
+        }
+    </script>
 {% endblock %}
