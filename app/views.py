@@ -1,0 +1,4 @@
+from django.shortcuts import render
+
+def navbar(request):
+    return render(request, 'main/home.html')
