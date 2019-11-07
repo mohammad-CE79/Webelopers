@@ -12,4 +12,5 @@ urlpatterns = [
     path('contact_us2/', views.contact_us2),
     path('panel/', views.user_panel),
     path('profile/', views.profile),
+    path('setting/', views.setting, name='setting'),
 ]

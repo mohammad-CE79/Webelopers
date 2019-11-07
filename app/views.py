@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -94,6 +95,23 @@ def sendmail(request):
 
 def user_panel(request):
     return render(request, 'main/userpanel.html')
+
+
+def setting(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
+        # user = request.user
+        user = User.objects.get(username=request.user.username)
+
+        if first_name != '':
+            user[first_name] = first_name
+        if last_name != '':
+            user[last_name] = last_name
+        user.save()
+        return redirect('/profile')
+    else:
+        return render(request, 'main/setting.html')
 
 
 @login_required(login_url='/')
