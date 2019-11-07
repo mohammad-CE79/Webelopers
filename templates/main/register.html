@@ -2,35 +2,30 @@
 
 {% block content %}
     <form id="register_form">
-        <div>
+        <div class="form-group">
             <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name=”first_name”>
+            <input type="text" class="form-control" id="first_name" name=”first_name”>
         </div>
-        <div>
+        <div class="form-group">
             <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name=”last_name”>
+            <input type="text" class="form-control" id="last_name" name=”last_name”>
         </div>
-        <div>
+        <div class="form-group">
             <label for="user_name">Username:</label>
-            <input type="text" id="user-name" name=”username”>
+            <input type="text" class="form-control" id="user-name" name=”username”>
         </div>
-        <div>
+        <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email">
         </div>
-        <div>
+        <div class="form-group">
             <label for="pass">Password:</label>
-            <input type="password" id="pass" name="password1">
+            <input type="password" class="form-control" id="pass" name="password1">
         </div>
-        <div>
-            <label for="pass2">:</label>
-            <input type="password" id="pass2" name="password2">
+        <div class="form-group">
+            <label for="pass2">Confirm Password:</label>
+            <input type="password" class="form-control" id="pass2" name="password2">
         </div>
-        <input name=”last_name”>
-        <input name=”username”>
-        <input name=”email”>
-        <input name=”password1”>
-        <input name=”password2”>
-        <button name=”submit>submit</button>
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 {% endblock %}
