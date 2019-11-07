@@ -25,3 +25,9 @@ class SignIn(AuthenticationForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
+
+class ContactUs(forms.Form):
+    title = forms.CharField(max_length=100, required=True)
+    text = forms.CharField(max_length=250, min_length=10, required=True)
+    email = forms.EmailField(required=True)
+

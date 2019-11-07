@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from app.forms import SignUp, SignIn
+from app.forms import SignUp, SignIn, ContactUs
 
 
 def navbar(request):
@@ -63,4 +63,12 @@ def logout_request(request):
     return redirect("/")
 
 def contact_us(request):
+    if request.method == 'POST':
+        form = ContactUs(request.POST)
+        if form.is_valid():
+            return redirect('/contact_us2')
+
     return render(request, 'main/contact_us.html')
+
+def contact_us2(request):
+    return render(request, 'main/contact_us2.html')
