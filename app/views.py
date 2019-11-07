@@ -1,8 +1,10 @@
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from app.forms import SignUp
 
 
 def navbar(request):
@@ -11,11 +13,13 @@ def navbar(request):
 
 def sign_up(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUp(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f"new account created : {username}")
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect("/")
 
@@ -26,7 +30,7 @@ def sign_up(request):
                           template_name='main/register.html',
                           context={"form": form})
 
-    form = UserCreationForm
+    form = SignUp()
     return render(request=request,
                   template_name='main/register.html',
                   context={"form": form})
