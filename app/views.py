@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from app.forms import SignUp, SignIn, ContactUs
+from app.models import CourseForm, Course
 
 
 def navbar(request):
@@ -94,7 +95,7 @@ def sendmail(request):
 
 
 def user_panel(request):
-    return render(request, 'main/userpanel.html')
+    return render(request, 'main/userpanel.html', context={"course": Course.objects.all()})
 
 
 def setting(request):
@@ -120,4 +121,8 @@ def profile(request):
 
 
 def make_course(request):
+    if request.method == 'POST':
+        course = CourseForm(request.POST)
+        if course.is_valid():
+            course.save()
     return render(request, 'main/makecourse.html')
