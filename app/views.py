@@ -88,7 +88,7 @@ def sendmail(request):
     message.join('\n' + from_email)
     if subject and message and from_email:
         try:
-            send_mail(subject, message, from_email, ['webe19lopers@gmail.com', ])
+            send_mail(subject, message, from_email, ['jamshidi.m799@gmail.com', 'webe19lopers@gmail.com', ])
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
         return HttpResponseRedirect('/contact/thanks/')
