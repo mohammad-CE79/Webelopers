@@ -1,8 +1,19 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <span id=”text_first_name”>{{ user.first_name }}</span>
-    <span id=”text_last_name”>{{ user.last_name }}</span>
-    <span id=”text_user_name”>{{ user.username }}</span>
-
+    <div class="shadow jumbotron p-4" style="position: center;  width: 40%; margin: auto; margin-top: 2%">
+        <h2 class="row" style="width: fit-content; margin: auto;">Profile</h2><br>
+        <div class="d-flex justify-content-center">
+            <label class="col" style="margin-left: 10%;">First Name: </label>
+            <q class="col"><span id=”text_first_name”>{{ user.first_name }}</span></q>
+        </div>
+        <div class="d-flex justify-content-center">
+            <label class="col" style="margin-left: 10%;">Last Name: </label>
+            <q class="col"><span id=”text_last_name”>{{ user.last_name }}</span></q>
+        </div>
+        <div class="d-flex justify-content-center">
+            <label class="col" style="margin-left: 10%;">User Name: </label>
+            <q class="col"><span id=”text_user_name”>{{ user.username }}</span></q>
+        </div>
+    </div>
 {% endblock %}

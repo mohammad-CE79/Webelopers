@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="navbar-nav" id="navbar">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="navbar-nav d-flex" id="navbar">
         <a class="navbar-brand" id="homepage" href="/">Home</a>
-        <a class="navbar-brand" id="contact_us" href="/contact_us">Contact Us</a>
+        <a class="nav-link" id="contact_us" href="/contact_us">Contact Us</a>
         {% if user.is_authenticated %}
-            <a class="navbar-brand" href="/account">{{ user.username }}</a>
-            <a class="navbar-brand" id="panel" href="/panel">panel</a>
-            <a class="navbar-brand" id="profile" href="/profile">profile</a>
-            <a class="navbar-brand" href="/logout" id="logout">Logout</a>
-            <a class="navbar-brand" href="/setting" id="setting">setting</a>
+            <a class="nav-link" href="/account">{{ user.username }}</a>
+            <a class="nav-link" id="panel" href="/panel">panel</a>
+            <a class="nav-link" id="profile" href="/profile">profile</a>
+            <a class="nav-link" href="/logout" id="logout">Logout</a>
+            <a class="nav-link" href="/setting" id="setting">setting</a>
         {% else %}
-            <a class="navbar-brand right" id="register" href="/register">Register</a>
-            <a class="navbar-brand right" id="login" href="/login">login</a>
+            <a class="nav-link" id="register" href="/register">Register</a>
+            <a class="nav-link" id="login" href="/login">login</a>
         {% endif %}
 
     </div>

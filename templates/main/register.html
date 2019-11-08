@@ -1,25 +1,56 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <h2>Sign up</h2>
-    <form method="post" id="register_form" action="{% url 'register' %}">
-        {% csrf_token %}
-        {% for field in form %}
-            <p>
-                {{ field.label_tag }}<br>
-                {{ field }}
-                {% if field.help_text %}
-                    <small style="color: grey">{{ field.help_text }}</small>
-                {% endif %}
+    <div class="shadow jumbotron p-4" style="position: center;  width: max-content; margin: auto; margin-top: 2%">
+        <h2 style="width: fit-content; margin: auto;">Sign up</h2><br>
+        <form method="post" id="register_form" action="{% url 'register' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group d-flex flex-row">
+                    <label class="col-sm-4" style="width: max-content;">{{ field.label_tag }}</label>
+                    {{ field }}
+
+                </div>
                 {% for error in field.errors %}
                     {% if error == "A user with that username already exists." %}
-                        <div style="color: red" id="errors">نام کاربری شما در سیستم موجود است</div>
+                        <div class="toast bg-danger" style="position: absolute; z-index: 2; left: 1em; bottom: 1em;"
+                             data-autohide="false">
+                            <div class="toast-body" style="color: white;" id="errors">
+                                نام کاربری شما در سیستم موجود است
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('.toast').toast('show');
+                            });
+                        </script>
                     {% elif error == "The two password fields didn't match." %}
-                        <div style="color: red" id="errors">گذرواژه و تکرار گذرواژه یکسان نیستند</div>
+                        <div class="toast bg-danger" style="position: absolute; z-index: 2; left: 1em; bottom: 1em;"
+                             data-autohide="false">
+                            <div class="toast-body" style="color: white;" id="errors">گذرواژه و تکرار گذرواژه یکسان
+                                نیستند
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('.toast').toast('show');
+                            });
+                        </script>
                     {% endif %}
                 {% endfor %}
-            </p>
-        {% endfor %}
-        <button type="submit" name="submit">Sign up</button>
-    </form>
+            {% endfor %}
+            <button class="btn btn-primary" style="margin-left: 10em; margin-right: 10em;" type="submit" name="submit">
+                Sign up
+            </button>
+        </form>
+    </div>
+    <script>
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control");
+            inputs[i].classList.add("mx-10");
+        }
+    </script>
 {% endblock %}
