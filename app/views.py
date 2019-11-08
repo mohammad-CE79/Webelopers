@@ -95,7 +95,7 @@ def sendmail(request):
 
 
 def user_panel(request):
-    return render(request, 'main/userpanel.html', context={"course": Course.objects.all()})
+    return render(request, 'main/userpanel.html')
 
 
 def setting(request):
@@ -126,3 +126,6 @@ def make_course(request):
         if course.is_valid():
             course.save()
     return render(request, 'main/makecourse.html')
+
+def all_courses(request):
+    return render(request, 'main/all_courses.html', context={"course": Course.objects.all()})
