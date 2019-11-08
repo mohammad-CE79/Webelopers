@@ -87,7 +87,7 @@ def sendmail(request):
     message.join('\n' + from_email)
     if subject and message and from_email:
         try:
-            send_mail(subject, message, from_email, ['webe19lopers@gmail.com'])
+            send_mail(subject, message, from_email, ['webe19lopers@gmail.com', ])
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
         return HttpResponseRedirect('/contact/thanks/')
@@ -101,13 +101,12 @@ def setting(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
-        # user = request.user
-        user = User.objects.get(username=request.user.username)
+        user = request.user
 
         if first_name != '':
-            user[first_name] = first_name
+            user.first_name = first_name
         if last_name != '':
-            user[last_name] = last_name
+            user.last_name = last_name
         user.save()
         return redirect('/profile')
     else:
