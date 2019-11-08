@@ -10,11 +10,11 @@
             </div>
         </form>
 
-        <div id="search_result" class="d-flex">
+        <div id="search_result" class="d-flex" style="border-style: solid; border-color: gray; padding: 5%; margin-bottom: 5%;">
             {% if object_list %}
-                <h4>Search Result</h4>
+                <h4>Search Result:</h4>
                 {% for cl in object_list %}
-                    <div class="{{ cl.course_number }}_{{ cl.group_number }} shadow jumbotron p-4"
+                    <div class="{{ cl.course_number }}_{{ cl.group_number }}"
                          style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
                         <div>{{ cl.name }}</div>
 {#                        <div class="shadow">{{ cl.department }}</div>#}
