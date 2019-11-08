@@ -32,7 +32,7 @@
     <div id="my_courses">
         {% for c in my_courses.all %}
             <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4"
-                 style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
+                 style="position: center;  width: max-content; margin: auto; margin-top: 2%">
                 <h4>{{ c.name }}</h4>
                 <div class="shadow">{{ c.department }}</div>
                 <div>{{ c.first_day }} و {{ c.second_day }}</div>
@@ -46,7 +46,7 @@
     <div id="all_courses" class="d-flex ">
         {% for c in course %}
             <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4"
-                 style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
+                 style="position: center;  width: max-content; margin: auto; margin-top: 2%" >
                 <h4>{{ c.name }}</h4>
                 <div class="shadow">{{ c.department }}</div>
                 <div>{{ c.first_day }} و {{ c.second_day }}</div>
