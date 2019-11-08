@@ -6,6 +6,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from app.forms import SignUp, SignIn, ContactUs
 from app.models import CourseForm, Course
@@ -86,12 +87,9 @@ def sendmail(request):
     message = request.POST.get('text', '')
     from_email = request.POST.get('email', '')
     message.join('\n' + from_email)
-    if subject and message and from_email:
-        try:
-            send_mail(subject, message, from_email, ['jamshidi.m799@gmail.com', 'webe19lopers@gmail.com', ])
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        return HttpResponseRedirect('/contact/thanks/')
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['webe19lopers@gmail.com', ]
+    send_mail(subject, message, email_from, recipient_list)
 
 
 def user_panel(request):
@@ -126,6 +124,7 @@ def make_course(request):
         if course.is_valid():
             course.save()
     return render(request, 'main/makecourse.html')
+
 
 def all_courses(request):
     return render(request, 'main/all_courses.html', context={"course": Course.objects.all()})
