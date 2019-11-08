@@ -14,5 +14,6 @@ urlpatterns = [
     path('profile/', views.profile),
     path('setting/', views.setting, name='setting'),
     path('makecourse/', views.make_course, name='makecourse'),
-    path('allcourses/', views.all_courses)
+    path('allcourses000/', views.all_courses),
+    path('allcourses/', views.SearchResultsView.as_view(), name='search')
 ]

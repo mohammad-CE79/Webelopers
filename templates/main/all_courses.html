@@ -1,9 +1,36 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+    <div>
+        <form id="search_form" action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <div class="form-group d-flex">
+                <input class="form-control mr-2" type="text" name="search_query" placeholder="Search">
+                <button class="btn btn-primary" name="submit" type="submit">Search</button>
+            </div>
+        </form>
+
+        <div id="search_result" class="d-flex" style="border-style: solid; border-color: gray; padding: 5%; margin-bottom: 5%;">
+            {% if object_list %}
+                <h4>Search Result:</h4>
+                {% for cl in object_list %}
+                    <div class="{{ cl.course_number }}_{{ cl.group_number }}"
+                         style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
+                        <div>{{ cl.name }}</div>
+{#                        <div class="shadow">{{ cl.department }}</div>#}
+{#                        <div>{{ cl.first_day }} و {{ cl.second_day }}</div>#}
+{#                        <div>{{ cl.start_time }} {{ cl.end_time }}</div>#}
+                        <div>{{ cl.teacher }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
     <div id="all_courses" class="d-flex ">
         {% for c in course %}
-            <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4" style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
+            <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4"
+                 style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
                 <h4>{{ c.name }}</h4>
                 <div class="shadow">{{ c.department }}</div>
                 <div>{{ c.first_day }} و {{ c.second_day }}</div>

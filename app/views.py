@@ -3,10 +3,12 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.views.generic import ListView
 
 from app.forms import SignUp, SignIn, ContactUs
 from app.models import CourseForm, Course
@@ -127,6 +129,18 @@ def make_course(request):
             course.save()
     return render(request, 'main/makecourse.html')
 
-
 def all_courses(request):
     return render(request, 'main/all_courses.html', context={"course": Course.objects.all()})
+
+class SearchResultsView(ListView):
+    model = Course
+    template_name = 'main/all_courses.html'
+    extra_context = {"course": Course.objects.all()}
+
+    def get_queryset(self):
+        query = self.request.GET.get('search_query')
+        object_list = Course.objects.filter(
+            Q(department=query)
+        )
+        return object_list
+
