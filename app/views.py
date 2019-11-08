@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from django.views.generic import ListView
 
 from app.forms import SignUp, SignIn, ContactUs
@@ -88,12 +89,9 @@ def sendmail(request):
     message = request.POST.get('text', '')
     from_email = request.POST.get('email', '')
     message.join('\n' + from_email)
-    if subject and message and from_email:
-        try:
-            send_mail(subject, message, from_email, ['webe19lopers@gmail.com', ])
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        return HttpResponseRedirect('/contact/thanks/')
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['webe19lopers@gmail.com', ]
+    send_mail(subject, message, email_from, recipient_list)
 
 
 def user_panel(request):
