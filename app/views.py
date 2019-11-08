@@ -88,10 +88,10 @@ def sendmail(request):
     subject = request.POST.get('title', '')
     message = request.POST.get('text', '')
     from_email = request.POST.get('email', '')
-    message.join('\n' + from_email)
+    content = message + '\n' + from_email
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['webe19lopers@gmail.com', ]
-    send_mail(subject, message, email_from, recipient_list)
+    send_mail(subject, content, email_from, recipient_list)
 
 
 def user_panel(request):
