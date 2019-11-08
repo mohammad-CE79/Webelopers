@@ -1,7 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <a class="btn btn-primary" id="make_new_course" href="/makecourse">make new course</a>
+    {% if user.is_superuser %}
+        <a class="btn btn-primary" id="make_new_course" href="/makecourse">make new course</a>
+    {% endif %}
     <a class="btn btn-primary" id="courses" href="/allcourses">Courses</a>
 
     <div id="all_courses" class="d-flex ">
