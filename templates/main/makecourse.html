@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <form id="make_course" class="form" method="post" action="{% url 'makecourse' %}">
+        {% csrf_token %}
+        <input name="department">
+        <input name="name">
+        <input name="course_number">
+        <input name="group_number">
+        <input name="teacher">
+        <input name="start_time">
+        <input name="end_time">
+        <select name="first_day">
+            <option value="0">شنبه</option>
+            <option value="1">یکشنبه</option>
+            <option value="2">دوشنبه</option>
+            <option value="3">سه شنبه</option>
+            <option value="4">چهارشنبه</option>
+        </select>
+        <select name="second_day">
+            <option value="0">شنبه</option>
+            <option value="1">یکشنبه</option>
+            <option value="2">دوشنبه</option>
+            <option value="3">سه شنبه</option>
+            <option value="4">چهارشنبه</option>
+        </select>
+        <button type="submit" class="btn btn-primary">create</button>
+    </form>
+{% endblock %}
