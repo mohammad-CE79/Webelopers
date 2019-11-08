@@ -140,7 +140,7 @@ def all_courses(request):
     student = Student.objects.filter(user=request.user.username).all()[0]
     course2 = []
     flag = True
-    for c in student.courses.all():
+    for c in courses:
         for cm in student.courses.all():
             if c.name == cm.name:
                 flag = False
