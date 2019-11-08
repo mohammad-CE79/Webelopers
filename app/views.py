@@ -100,12 +100,14 @@ def setting(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
+        image = request.FILES('image')
         user = request.user
 
         if first_name != '':
             user.first_name = first_name
         if last_name != '':
             user.last_name = last_name
+        user.image = image
         user.save()
         return redirect('/profile')
     else:
