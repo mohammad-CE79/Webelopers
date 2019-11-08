@@ -1,5 +1,8 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
+
+from app.forms import SignUp
 
 first_day_choice = [(0, 0),
                     (1, 1),
@@ -24,4 +27,4 @@ class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = ['department', 'name', 'course_number', 'group_number',
-                  'teacher', 'start_time', 'end_time', 'first_day', 'second_day']
+                  'teacher', 'start_time', 'end_time', 'first_day', 'second_day',]
