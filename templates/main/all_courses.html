@@ -16,10 +16,10 @@
                 {% for cl in object_list %}
                     <div class="{{ cl.course_number }}_{{ cl.group_number }} shadow jumbotron p-4"
                          style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
-                        <h4>{{ cl.name }}</h4>
-                        <div class="shadow">{{ cl.department }}</div>
-                        <div>{{ cl.first_day }} و {{ cl.second_day }}</div>
-                        <div>{{ cl.start_time }} {{ cl.end_time }}</div>
+                        <div>{{ cl.name }}</div>
+{#                        <div class="shadow">{{ cl.department }}</div>#}
+{#                        <div>{{ cl.first_day }} و {{ cl.second_day }}</div>#}
+{#                        <div>{{ cl.start_time }} {{ cl.end_time }}</div>#}
                         <div>{{ cl.teacher }}</div>
                     </div>
                 {% endfor %}
