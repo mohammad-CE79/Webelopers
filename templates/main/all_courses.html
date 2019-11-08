@@ -27,6 +27,11 @@
         </div>
 
     </div>
+
+    <div id="my_courses">
+
+    </div>
+
     <div id="all_courses" class="d-flex ">
         {% for c in course %}
             <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4"
@@ -36,6 +41,7 @@
                 <div>{{ c.first_day }} و {{ c.second_day }}</div>
                 <div>{{ c.start_time }} {{ c.end_time }}</div>
                 <div>{{ c.teacher }}</div>
+            <a class="add"></a>
             </div>
         {% endfor %}
     </div>
