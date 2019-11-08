@@ -2,4 +2,16 @@
 
 {% block content %}
     <a class="btn btn-primary" id="make_new_course" href="/makecourse">make new course</a>
+
+    <div id="all_courses" class="d-flex ">
+        {% for c in course %}
+            <div class="{{ c.name }}_{{ c.group_number }} shadow jumbotron p-4" style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
+                <h4>{{ c.name }}</h4>
+                <div class="shadow">{{ c.department }}</div>
+                <div>{{ c.first_day }} و {{ c.second_day }}</div>
+                <div>{{ c.start_time }} {{ c.end_time }}</div>
+                <div>{{ c.teacher }}</div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
