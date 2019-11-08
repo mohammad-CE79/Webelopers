@@ -25,3 +25,8 @@ class CourseForm(ModelForm):
         model = Course
         fields = ['department', 'name', 'course_number', 'group_number',
                   'teacher', 'start_time', 'end_time', 'first_day', 'second_day']
+
+class Student(models.Model):
+    user = models.CharField(max_length=200, default="__")
+    courses = models.ManyToManyField(Course)
+

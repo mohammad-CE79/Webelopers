@@ -11,7 +11,7 @@ from django.conf import settings
 from django.views.generic import ListView
 
 from app.forms import SignUp, SignIn, ContactUs
-from app.models import CourseForm, Course
+from app.models import CourseForm, Course, Student
 
 
 def navbar(request):
@@ -28,6 +28,9 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            student = Student()
+            student.user = username
+            student.save()
             return redirect("/")
 
         else:
@@ -53,6 +56,8 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}")
+                # student = Student()
+                # student.user = username
                 return redirect('/')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -129,8 +134,23 @@ def make_course(request):
             course.save()
     return render(request, 'main/makecourse.html')
 
+
 def all_courses(request):
-    return render(request, 'main/all_courses.html', context={"course": Course.objects.all()})
+    courses = Course.objects.all()
+    student = Student.objects.filter(user=request.user.username).all()[0]
+    course2 = []
+    flag = True
+    for c in student.courses.all():
+        for cm in student.courses.all():
+            if c.name == cm.name:
+                flag = False
+        if flag:
+            course2.append(c)
+        flag = True
+    return render(request, 'main/all_courses.html',
+                  context={"course": course2,
+                    "my_courses": Student.objects.filter(user=request.user.username).all()[0].courses})
+
 
 class SearchResultsView(ListView):
     model = Course
@@ -143,4 +163,10 @@ class SearchResultsView(ListView):
             Q(department=query)
         )
         return object_list
+
+
+def add_course(request, number):
+    course = Course.objects.all().filter(course_number=str(number)).all()[0]
+    Student.objects.all().filter(user=request.user.username).all()[0].courses.add(course)
+    return redirect('/allcourses')
 
