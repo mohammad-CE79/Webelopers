@@ -16,11 +16,11 @@
                 {% for cl in object_list %}
                     <div class="{{ cl.course_number }}_{{ cl.group_number }}"
                          style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
-                        <div>{{ cl.name }}</div>
+                        {{ cl.name }}<br>
 {#                        <div class="shadow">{{ cl.department }}</div>#}
 {#                        <div>{{ cl.first_day }} و {{ cl.second_day }}</div>#}
 {#                        <div>{{ cl.start_time }} {{ cl.end_time }}</div>#}
-                        <div>{{ cl.teacher }}</div>
+                        {{ cl.teacher }}
                     </div>
                 {% endfor %}
             {% endif %}
