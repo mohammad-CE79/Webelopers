@@ -19,6 +19,12 @@ class Course(models.Model):
     first_day = models.IntegerField(choices=first_day_choice)
     second_day = models.IntegerField(choices=first_day_choice)
 
+    class Meta:
+        verbose_name_plural = "courses"
+
+    def __str__(self):
+        return self.department
+
 
 class CourseForm(ModelForm):
     class Meta:
