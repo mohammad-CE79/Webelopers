@@ -1,9 +1,6 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <a class="btn btn-primary" id="make_new_course" href="/makecourse">make new course</a>
-    <a class="btn btn-primary" id="courses" href="/allcourses">Courses</a>
-
     <div id="all_courses" class="d-flex ">
         {% for c in course %}
             <div class="{{ c.course_number }}_{{ c.group_number }} shadow jumbotron p-4" style="position: center;  width: max-content; margin: auto; margin-top: 2%" id="all_courses">
