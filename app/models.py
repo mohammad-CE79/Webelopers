@@ -14,7 +14,7 @@ class Course(models.Model):
     course_number = models.IntegerField()
     group_number = models.IntegerField()
     teacher = models.CharField(max_length=200)
-    start_time = models.TimeField()
+    start_time = models.TimeField(TIME_INPUT_FORMATS='%H:%M')
     end_time = models.TimeField()
     first_day = models.IntegerField(choices=first_day_choice)
     second_day = models.IntegerField(choices=first_day_choice)
